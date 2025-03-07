@@ -54,7 +54,7 @@ Excerpts from case law and legal sources:
 ${context}
 
 If the excerpts do not contain relevant information, say something along the lines of:
-"While the provided documents do not directly address your question, based on legal precedent and case law, here’s what I can explain." Then proceed to answer based on legal reasoning.
+"Here’s what I can explain based on the documents and existing case law" Then proceed to answer based on legal reasoning in the case summarization format.
 
 Respond with the following tone: ${AI_TONE}.
 
