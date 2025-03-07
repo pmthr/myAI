@@ -25,8 +25,11 @@ function UserMessage({ message }: { message: DisplayMessage }) {
       <motion.div
         whileHover={{ scale: 1.01 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="px-3 py-1 rounded-2xl max-w-[60%] shadow-sm hover:shadow-md transition-shadow duration-300
-                   bg-primary text-primary-foreground"
+        className="px-3 py-1 rounded-2xl max-w-[60%] shadow-sm hover:shadow-md transition-shadow duration-300"
+        style={{
+          backgroundColor: "var(--user-bubble-bg)",
+          color: "var(--user-bubble-text)",
+        }}
       >
         {message.content}
       </motion.div>
@@ -46,8 +49,11 @@ function AssistantMessage({ message }: { message: DisplayMessage }) {
       <motion.div
         whileHover={{ scale: 1.01 }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="px-3 py-1 rounded-2xl max-w-[60%] shadow-sm hover:shadow-md transition-shadow duration-300
-                   bg-secondary text-secondary-foreground"
+        className="px-3 py-1 rounded-2xl max-w-[60%] shadow-sm hover:shadow-md transition-shadow duration-300"
+        style={{
+          backgroundColor: "var(--assistant-bubble-bg)",
+          color: "var(--assistant-bubble-text)",
+        }}
       >
         <Formatting message={message} />
       </motion.div>
@@ -58,7 +64,7 @@ function AssistantMessage({ message }: { message: DisplayMessage }) {
 function EmptyMessages() {
   return (
     <div className="flex flex-col flex-1 p-1 gap-3 justify-center items-center">
-      <p className="text-muted-foreground">Ask a question to start the conversation</p>
+      <p className="text-gray-500">Ask a question to start the conversation</p>
     </div>
   );
 }

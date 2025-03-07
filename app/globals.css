@@ -2,76 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global Font */
 body {
   font-family: "Times New Roman", serif;
 }
 
+/* Utility Class */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
+/* Theme Colors */
 @layer base {
   :root {
-    --background: #0A171F;
-    --foreground: #D4B57C;
-    --card: #0A171F;
+    --background: #0A171F; /* Deep navy background */
+    --foreground: #D4B57C; /* Gold text */
+
+    --card: #0E1A26;
     --card-foreground: #D4B57C;
-    --popover: #0A171F;
+
+    --popover: #0E1A26;
     --popover-foreground: #D4B57C;
-    --primary: #D4B57C;
+
+    --primary: #D4B57C; /* Gold accent */
     --primary-foreground: #0A171F;
-    --secondary: #0A171F;
+
+    --secondary: #11212A; /* Slightly lighter navy */
     --secondary-foreground: #D4B57C;
-    --muted: #0A171F;
+
+    --muted: #142530; /* Deep muted blue */
     --muted-foreground: #D4B57C;
-    --accent: #0A171F;
+
+    --accent: #1B2D3A; /* Subtle accent for UI */
     --accent-foreground: #D4B57C;
-    --destructive: #ff0000;
+
+    --destructive: #ff0000; /* Red for errors */
     --destructive-foreground: #ffffff;
-    --border: #D4B57C;
+
+    --border: #D4B57C; /* Gold border */
     --input: #D4B57C;
     --ring: #D4B57C;
+
+    /* Chart Colors */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
+
     --radius: 0.5rem;
   }
+
+  /* Dark Mode Adjustments */
   .dark {
     --background: #0A171F;
     --foreground: #D4B57C;
-    --card: #0A171F;
+
+    --card: #0E1A26;
     --card-foreground: #D4B57C;
-    --popover: #0A171F;
+
+    --popover: #0E1A26;
     --popover-foreground: #D4B57C;
+
     --primary: #D4B57C;
     --primary-foreground: #0A171F;
-    --secondary: #0A171F;
+
+    --secondary: #11212A;
     --secondary-foreground: #D4B57C;
-    --muted: #0A171F;
+
+    --muted: #142530;
     --muted-foreground: #D4B57C;
-    --accent: #0A171F;
+
+    --accent: #1B2D3A;
     --accent-foreground: #D4B57C;
+
     --destructive: #ff0000;
     --destructive-foreground: #ffffff;
+
     --border: #D4B57C;
     --input: #D4B57C;
     --ring: #D4B57C;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
   }
-}
 
-@layer base {
+  /* Global Element Styles */
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
