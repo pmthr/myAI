@@ -17,8 +17,8 @@ body {
 /* Theme Colors */
 @layer base {
   :root {
-    --background: #0A171F;
-    --foreground: #D4B57C; 
+    --background: #0A171F; /* Deep navy background */
+    --foreground: #D4B57C; /* Gold text */
 
     --card: #0E1A26;
     --card-foreground: #D4B57C;
@@ -26,22 +26,22 @@ body {
     --popover: #0E1A26;
     --popover-foreground: #D4B57C;
 
-    --primary: #D4B57C; 
+    --primary: #D4B57C; /* Gold accent */
     --primary-foreground: #0A171F;
 
-    --secondary: #11212A; 
+    --secondary: #11212A; /* Slightly lighter navy */
     --secondary-foreground: #D4B57C;
 
-    --muted: #142530; 
+    --muted: #142530; /* Deep muted blue */
     --muted-foreground: #D4B57C;
 
-    --accent: #1B2D3A;
+    --accent: #1B2D3A; /* Subtle accent for UI */
     --accent-foreground: #D4B57C;
 
-    --destructive: #ff0000;
+    --destructive: #ff0000; /* Red for errors */
     --destructive-foreground: #ffffff;
 
-    --border: #D4B57C; 
+    --border: #D4B57C; /* Gold border */
     --input: #D4B57C;
     --ring: #D4B57C;
 
@@ -54,10 +54,11 @@ body {
 
     --radius: 0.5rem;
 
-    --user-bubble-bg: #28445a;
-    --user-bubble-text: #e4e1e1d0; 
-    --assistant-bubble-bg: #1a3951; 
-    --assistant-bubble-text: #e4e1e1d0; 
+    --user-bubble-bg: #142530; /* Gold for user messages */
+    --user-bubble-text: #ffffff; /* Dark text for contrast */
+
+    --assistant-bubble-bg: #1B2D3A; /* Deep navy for assistant messages */
+    --assistant-bubble-text: #ffffff; /* Gold text for readability */
   }
 
   /* Dark Mode Adjustments */
