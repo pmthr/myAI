@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { EraserIcon } from "lucide-react";
+import { EraserIcon, RefreshCwIcon } from "lucide-react";
 import Image from "next/image";
 import { CHAT_HEADER, CLEAR_BUTTON_TEXT } from "@/configuration/ui";
 import { AI_NAME } from "@/configuration/identity";
@@ -13,8 +13,10 @@ export const AILogo = () => (
 
 export default function ChatHeader({
   clearMessages,
+  resetChat
 }: {
   clearMessages: () => void;
+  resetChat: () => void;
 }) {
   return (
     <div className="z-10 flex justify-center items-center fixed top-0 w-full p-5 bg-white shadow-md">
@@ -24,7 +26,7 @@ export default function ChatHeader({
           <AILogo />
           <p>{CHAT_HEADER}</p>
         </div>
-        <div className="flex-0 w-[100px] flex justify-end items-center">
+        <div className="flex-0 w-[100px] flex justify-end items-center gap-2">
           <Button
             onClick={clearMessages}
             className="gap-2 shadow-sm"
@@ -33,6 +35,15 @@ export default function ChatHeader({
           >
             <EraserIcon className="w-4 h-4" />
             <span>{CLEAR_BUTTON_TEXT}</span>
+          </Button>
+          <Button
+            onClick={resetChat}
+            className="gap-2 shadow-sm"
+            variant="outline"
+            size="sm"
+          >
+            <RefreshCwIcon className="w-4 h-4" />
+            <span>Reset Chat</span>
           </Button>
         </div>
       </div>
