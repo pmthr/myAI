@@ -1,30 +1,63 @@
-import { z } from "zod";
-import { citationSchema } from "./data";
+"use client";
+import { useState, useEffect } from "react";
 
-export const displayMessageSchema = z.object({
-  role: z.enum(["user", "assistant", "system"]),
-  content: z.string(),
-  citations: z.array(citationSchema).default([]),
-});
-export type DisplayMessage = z.infer<typeof displayMessageSchema>;
+type Role = "user" | "assistant";
+type Message = { role: Role; content: string };
 
-export const chatSchema = z.object({
-  messages: z.array(displayMessageSchema),
-});
-export type Chat = z.infer<typeof chatSchema>;
+export default function useApp() {
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [indicatorState, setIndicatorState] = useState([]);
 
-export const indicatorIconTypeSchema = z.enum([
-  "thinking",
-  "searching",
-  "understanding",
-  "documents",
-  "none",
-  "error",
-]);
-export type IndicatorIconType = z.infer<typeof indicatorIconTypeSchema>;
+  useEffect(() => {
+    const stored = localStorage.getItem("chatMessages");
+    if (stored) {
+      setMessages(JSON.parse(stored));
+    } else {
+      setMessages([{ role: "assistant", content: "Hello, how can I help you?" }]);
+    }
+    function handleBeforeUnload() {
+      localStorage.removeItem("chatMessages");
+    }
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
-export const loadingIndicatorSchema = z.object({
-  status: z.string(),
-  icon: indicatorIconTypeSchema,
-});
-export type LoadingIndicator = z.infer<typeof loadingIndicatorSchema>;
+  useEffect(() => {
+    localStorage.setItem("chatMessages", JSON.stringify(messages));
+  }, [messages]);
+
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setInput(e.target.value);
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (!input.trim()) return;
+    const userMsg = { role: "user", content: input };
+    setMessages(prev => [...prev, userMsg]);
+    setInput("");
+  }
+
+  function clearMessages() {
+    setMessages([]);
+  }
+
+  function resetChat() {
+    setMessages([{ role: "assistant", content: "Hello, how can I help you?" }]);
+  }
+
+  return {
+    messages,
+    input,
+    isLoading,
+    indicatorState,
+    handleInputChange,
+    handleSubmit,
+    clearMessages,
+    resetChat
+  };
+}

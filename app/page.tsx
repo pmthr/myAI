@@ -1,5 +1,4 @@
 "use client";
-
 import ChatInput from "@/components/chat/input";
 import ChatMessages from "@/components/chat/messages";
 import useApp from "@/hooks/use-app";
@@ -14,11 +13,12 @@ export default function Chat() {
     isLoading,
     indicatorState,
     clearMessages,
+    resetChat
   } = useApp();
 
   return (
     <>
-      <ChatHeader clearMessages={clearMessages} />
+      <ChatHeader clearMessages={clearMessages} resetChat={resetChat} />
       <div className="flex justify-center items-center h-screen">
         <div className="flex flex-col max-w-screen-lg w-full h-full p-5">
           <ChatMessages messages={messages} indicatorState={indicatorState} />
