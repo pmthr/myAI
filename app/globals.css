@@ -53,6 +53,12 @@ body {
     --chart-5: 340 75% 55%;
 
     --radius: 0.5rem;
+
+    --user-bubble-bg: #142530; /* Gold for user messages */
+    --user-bubble-text: #ffffff; /* Dark text for contrast */
+
+    --assistant-bubble-bg: #1B2D3A; /* Deep navy for assistant messages */
+    --assistant-bubble-text: #ffffff; /* Gold text for readability */
   }
 
   /* Dark Mode Adjustments */
