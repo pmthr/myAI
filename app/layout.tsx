@@ -1,10 +1,15 @@
-"use client";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
+import { PAGE_TITLE, PAGE_DESCRIPTION } from "@/configuration/ui";
 import "./globals.css";
 import { ErrorWrapper } from "./parts/error/error-wrapper";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import localFont from "next/font/local";
-import { PAGE_TITLE, PAGE_DESCRIPTION } from "@/configuration/ui";
-import { useState, useEffect } from "react";
+import { ReactNode } from "react";
+
+export const metadata: Metadata = {
+  title: PAGE_TITLE,
+  description: PAGE_DESCRIPTION,
+};
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -18,11 +23,23 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
+  return (
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <TooltipProvider>
+          <ErrorWrapper>
+            <ClientThemeWrapper>{children}</ClientThemeWrapper>
+          </ErrorWrapper>
+        </TooltipProvider>
+      </body>
+    </html>
+  );
+}
+
+function ClientThemeWrapper({ children }: { children: ReactNode }) {
+  "use client";
+  const { useState, useEffect } = require("react");
   const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
@@ -40,22 +57,16 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en">
-      <head>
-        <title>{PAGE_TITLE}</title>
-        <meta name="description" content={PAGE_DESCRIPTION} />
-      </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <TooltipProvider>
-          <ErrorWrapper>
-            <div className="p-2 flex justify-end">
-              <button
-                onClick={toggleTheme}
-                className="border border-border px-4 py-2 rounded text-sm"
-              >
-                Toggle Theme
-              </button>
-            </div>
-            {children}
-          </ErrorWrapper>
-        </Toolti
+    <div>
+      <div className="p-2 flex justify-end">
+        <button
+          onClick={toggleTheme}
+          className="border border-border px-4 py-2 rounded text-sm"
+        >
+          Toggle Theme
+        </button>
+      </div>
+      {children}
+    </div>
+  );
+}
