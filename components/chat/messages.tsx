@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ChatHeader from "@/components/chat/header";
-import { INITIAL_MESSAGE } from "@/configuration/prompts";
+import { INITIAL_MESSAGE } from "@/configuration/chat";
 
 export default function ChatMessages() {
   const [messages, setMessages] = useState(() => {
