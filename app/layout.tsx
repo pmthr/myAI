@@ -4,6 +4,7 @@ import { PAGE_TITLE, PAGE_DESCRIPTION } from "@/configuration/ui";
 import "./globals.css";
 import { ErrorWrapper } from "./parts/error/error-wrapper";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useState, useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,10 +30,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <TooltipProvider>
           <ErrorWrapper>
-            <ClientThemeToggleWrapper>{children}</ClientThemeToggleWrapper>
+            <ClientThemeWrapper>{children}</ClientThemeWrapper>
           </ErrorWrapper>
         </TooltipProvider>
       </body>
@@ -40,10 +41,8 @@ export default function RootLayout({
   );
 }
 
-function ClientThemeToggleWrapper({ children }: { children: React.ReactNode }) {
+function ClientThemeWrapper({ children }: { children: React.ReactNode }) {
   "use client";
-  import { useState, useEffect } from "react";
-
   const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
