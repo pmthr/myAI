@@ -1,11 +1,9 @@
-"use client";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { PAGE_TITLE, PAGE_DESCRIPTION } from "@/configuration/ui";
 import "./globals.css";
 import { ErrorWrapper } from "./parts/error/error-wrapper";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { useState, useEffect } from "react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -29,10 +27,29 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  return (
+    <html lang="en">
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
+        <TooltipProvider>
+          <ErrorWrapper>
+            <ClientThemeToggleWrapper>{children}</ClientThemeToggleWrapper>
+          </ErrorWrapper>
+        </TooltipProvider>
+      </body>
+    </html>
+  );
+}
+
+function ClientThemeToggleWrapper({ children }: { children: React.ReactNode }) {
+  "use client";
+  import { useState, useEffect } from "react";
+
   const [theme, setTheme] = useState("dark");
+
   useEffect(() => {
     document.documentElement.classList.add("dark");
   }, []);
+
   function toggleTheme() {
     if (theme === "dark") {
       setTheme("light");
@@ -42,23 +59,18 @@ export default function RootLayout({
       document.documentElement.classList.add("dark");
     }
   }
+
   return (
-    <html lang="en">
-      <TooltipProvider>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <ErrorWrapper>
-            <div className="p-2 flex justify-end">
-              <button
-                onClick={toggleTheme}
-                className="border border-border px-4 py-2 rounded text-sm"
-              >
-                Toggle Theme
-              </button>
-            </div>
-            {children}
-          </ErrorWrapper>
-        </body>
-      </TooltipProvider>
-    </html>
+    <div>
+      <div className="p-2 flex justify-end">
+        <button
+          onClick={toggleTheme}
+          className="border border-border px-4 py-2 rounded text-sm"
+        >
+          Toggle Theme
+        </button>
+      </div>
+      {children}
+    </div>
   );
 }
