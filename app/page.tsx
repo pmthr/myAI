@@ -18,7 +18,6 @@ export default function Chat() {
     clearMessages,
   } = useApp();
 
-  // ✅ Implement session-based reset functionality
   const [chatMessages, setChatMessages] = useState(() => {
     if (typeof window !== "undefined") {
       const savedMessages = sessionStorage.getItem("chatMessages");
