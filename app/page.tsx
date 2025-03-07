@@ -4,7 +4,7 @@ import ChatInput from "@/components/chat/input";
 import ChatMessages from "@/components/chat/messages";
 import useApp from "@/hooks/use-app";
 import ChatHeader from "@/components/chat/header";
-import { INITIAL_MESSAGE } from "@/configuration/prompts";
+import { INITIAL_MESSAGE } from "@/configuration/chat";
 import { useEffect, useState } from "react";
 
 export default function Chat() {
